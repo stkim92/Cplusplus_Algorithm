@@ -1,0 +1,79 @@
+#include<iostream>
+#include<string.h>
+#include<String>
+
+
+using namespace std;
+
+void main()
+{
+
+	string contents;
+	char *contents_char;
+
+	cin>>contents;
+	int length=contents.length();
+	int size=contents.size();
+	int i;
+	int j;
+	int k;
+	cout<<length<<endl;
+
+	contents_char=(char*)contents.c_str();
+
+	contents_char[i];
+
+	for(i=0; i<length; i++){
+		for(j=i+1; j<length; j++){
+			if(contents_char[i]==contents_char[j])
+				if(length%2==1){
+					cout<<"지금은 홀수개네!"<<endl;
+					length= length/2+1;
+					for(k=0; k<length; k++){
+						
+						if(contents_char[i]==contents_char[j])
+						{
+							i++;
+						j--;
+	
+							cout<<"일치하는것"<<contents_char[i]<<contents_char[j]<<endl;
+							cout<<i<<"번째까지일치"<<endl;
+							contents_char[i];
+						}
+						else{
+							cout<<"불일치"<<endl;
+							break;
+						}
+
+
+					}
+					
+				}
+				else if(length%2 == 0){
+					length = length/2 ;
+					for(k=0; k<length; k++){
+						cout<<"지금은 짝수개네!"<<endl;
+						i++;
+						j--;
+						if(contents_char[i]==contents_char[j])
+						{
+							
+							
+							cout<<"일치하는것"<<contents_char[i]<<contents_char[j]<<endl;
+							cout<<i<<"번째까지일치"<<endl;
+						}
+						else{
+							cout<<"불일치"<<endl;
+							break;
+						}
+					
+					}
+				}
+
+		}
+	}
+
+	
+
+
+}

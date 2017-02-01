@@ -1,0 +1,125 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class list{
+private: 
+	typedef struct node{
+		char data;
+		node *next;
+	}* nodeptr;
+
+	nodeptr curr;
+	nodeptr head;
+	nodeptr temp;
+
+
+public:
+	list();
+	void append(char appdata);
+	void print();
+	void seldel();
+
+
+};
+
+
+char *address[20];
+int count = 0;
+
+list::list(){
+	curr= NULL;
+	head=NULL;
+	temp=NULL;
+}
+
+void list::append(char appdata){
+	count ++;
+	curr = head;
+	temp = head;
+
+	nodeptr n=new node;
+	n->data = appdata;
+	n->next = NULL;
+
+	if( curr != NULL){
+		while(curr->next != NULL){
+			curr = curr->next;
+		}
+			
+		curr->next = n;
+	}
+	else if ( curr == NULL){
+		head = n;
+	}
+
+	
+
+
+}
+
+void list::print(){
+	curr = head;
+	while ( curr != NULL){
+		cout<<curr->data<<" ";
+		curr = curr->next;
+
+	}
+	cout<<endl;
+
+}
+
+void list::seldel(){
+	
+	int index = 0;
+	curr = head; 
+
+	/*for(int i=0 ; i<count ; i++){
+		address[i] = (char*)curr;
+		curr= curr->next;
+	}*/
+
+	cout<<" 삭제할 인덱스 입력 : " ;
+	cin>>index;
+
+	for(int i=0 ; i<index-1; i++){
+
+		curr = curr->next;
+	}
+
+	curr->data = curr->next->data;
+	curr->next = curr->next->next;
+
+
+}
+
+void main(){
+	list list;
+	int sel = 0;
+	while (1){
+		cout<<"1. 추가 2. 출력 3. 삭제"<<endl;
+		cin>>sel;
+		char input;
+		if ( sel == 1 ){
+			
+			cout<<" 추가 할 것 : " ;
+			cin>> input;
+			list.append( input);
+
+		}
+
+		else if ( sel == 2 ){
+			list.print();
+
+		}
+
+		else if (sel ==3 ){
+			list.seldel();
+		}
+
+
+	}
+
+}

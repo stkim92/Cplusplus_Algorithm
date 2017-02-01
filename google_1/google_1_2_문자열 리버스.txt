@@ -1,0 +1,39 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+void main(){
+
+	string input;
+	//char* input_arry;
+	int i ,num,temp;
+
+	cin>>input;
+
+	//input_arry=(char*)input.c_str();
+	
+	//num = strlen(input);
+
+
+	for( i=0 ; i<input.size()/2; i++){
+			temp = input[i];
+			input[i]=input[input.size()-i-1];
+			input[input.size()-i-1]=temp;
+		}
+
+		cout<<input;
+
+	string str1, str2;
+
+	cin >> str1, cin >> str2;
+
+	str1 += str2;
+
+	cout << str1[1];
+
+	
+
+}
+

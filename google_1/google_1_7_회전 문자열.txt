@@ -1,0 +1,72 @@
+#include < iostream>
+#include <string>
+
+using namespace std;
+
+void main(){
+	string str1;
+	string str2;
+	int num =0;
+	int j,k =0;
+	int i=1;
+	int a[10]={0,};
+	int check =0;
+
+	cout<<"문자열 입력 : ";
+	cin>>str1;
+	cout<<"문자열 입력 : ";
+	cin>>str2;
+
+	num = str1.length();
+///////////////////////////////////////////////두문자열간 인덱스 비교
+	cout<<" 인덱스 비교 "<<endl;
+	for(i=1; i<num+1; i++){
+		for(j=0; j<num; j++)
+	{
+		if(str1[i-1] == str2[j]){
+			
+			cout<<" <  "<<i-1<<" ,"<<j<<"  >"<<endl;
+			
+			a[i-1] = j;////////////////////j를 a배열에 차례차례 넣음
+			
+		}
+
+	/*	cout<<a[i];
+		if( a[i]-a[i-1] ==1)
+			cout<< "yeaaah" <<endl;
+		else if ( a[i] == 0 && a[i-1] == num-1)
+			cout<< "yeahhhh" <<endl;*/
+		
+		}
+	}
+	////////////////////////////////////////////////배열 a를가지고 체크
+	for(i=1;i<num+1; i++){
+	
+		
+			
+		if( a[i]-a[i-1] ==1){
+			check++;
+			cout<<i<<" 번 째 : "<< "check[yes] " <<endl;
+			
+			
+		}
+		else if ( a[i] == 0 && a[i-1] == num-1){
+			check++;
+			cout<<i<<" 번 째 : "<< "check[yes] "	<<endl;
+			
+		}
+		
+		
+	/////////////////////////////////check를 이용해서 검사	
+
+	}
+
+	if(check == num-1){
+			cout<<"회전 문자열이 맞습니다. ";
+		}
+	else
+			cout<<"회전 문자열이 아닙니다. ";
+
+	
+
+}

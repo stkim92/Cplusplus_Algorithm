@@ -1,0 +1,35 @@
+#include<iostream>
+
+using namespace std;
+
+struct enemyspaceship
+{
+	int x;
+	int y;
+	int pewer;
+};
+
+
+enemyspaceship getnewenemy(){
+	enemyspaceship ship1;
+	ship1.x = 0;
+	ship1.y = 0;
+	ship1.pewer = 20;
+	
+	return ship1;
+}
+
+enemyspaceship upgrade(enemyspaceship ship)
+{
+	ship.pewer+= 10;
+	return ship;
+}
+
+int main(){
+	enemyspaceship enemy = getnewenemy();
+	enemy = upgrade(enemy);
+	cout<<enemy.pewer<<" ";
+	
+}
+
+

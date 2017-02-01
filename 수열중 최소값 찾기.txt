@@ -1,0 +1,34 @@
+#include<iostream>
+
+using namespace std;
+void main()
+{
+
+	int* arry_num_value;
+	int arry_num;
+	int i;
+	int min;
+	//
+	cin>>arry_num;
+	//int arry_num_value[arry_num];
+
+	
+	arry_num_value = (int*)malloc(sizeof(int)*arry_num);
+	
+
+	for(i=0; i<arry_num; i++){
+		cin>>arry_num_value[i];
+		//cout<<arry_num_value[i]<<endl;
+	}
+
+	min=arry_num_value[0];
+	for(i=0; i<arry_num; i++){
+		if(min>arry_num_value[i])
+		{
+			min = arry_num_value[i];
+		}
+
+		
+}
+	cout<<min<<endl;
+}

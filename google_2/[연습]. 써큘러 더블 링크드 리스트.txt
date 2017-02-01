@@ -1,0 +1,138 @@
+#include<iostream>
+
+using namespace std;
+
+class list{
+private :
+	typedef struct node{
+		int data;
+		node* next;
+		node* prev;
+
+	}node;
+
+	node* head;
+	node* tail;
+
+
+public:
+	
+
+	list()
+	{
+		head= NULL;
+		tail = head;
+	}
+
+	void add_node(int add_data);
+	void del_node(list::node* del_node);
+	node* search(int index);
+	void print();
+
+};
+
+int count=0;
+
+
+// add_node(int add_data) - complete
+void list::add_node(int add_data){
+	
+	node* new_node = new node;
+	new_node->data = add_data;
+
+	if( head == NULL){
+		new_node->next = new_node;
+		new_node->prev = new_node;
+		head = new_node;
+		tail = head;
+	}
+	else {
+		new_node->next = tail->next;
+		new_node->prev = tail;
+
+		tail->next = new_node;
+		head->prev = new_node;
+
+		tail=new_node;
+	}
+	count ++;
+	
+} // complete
+
+list::node* list::search(int index){
+	node* searchptr;
+	searchptr = head;
+	for(int i=0; i< index-1; i++){
+		searchptr = searchptr->next;
+	}
+	return searchptr;
+}
+
+// del_node(int del_data) - ing 
+void list::del_node(list::node* del_node){  
+
+
+
+	if( del_node == head){
+		head = head->next;
+	}
+	else if(del_node == tail){
+
+		tail = tail->prev;
+	}
+
+	else if(del_node == head && del_node == tail){
+		head = NULL;
+		tail = NULL;
+	}
+	
+	else{
+		del_node->prev->next = del_node->next ;
+		del_node->next->prev = del_node->prev;
+		delete del_node;
+		/*head->prev = tail;
+		tail->next = head;*/
+	}
+} 
+
+void list::print(){
+	node* temp;
+	temp= head;
+	for(int i=0; i<count*2; i++){
+		cout<<temp->data<<" ";
+		temp = temp->next;
+	}
+	cout<<endl;
+}
+
+void main(){
+
+	
+	list mylist;
+	int sel =0;
+	while(1){
+	cout<<"1. 입력 2. 출력 3. 삭제  [ 선택 ] : " ;
+	cin>>sel;
+	
+		if( sel == 1 ){
+			int input;
+			cout<< "[ 값을 입력하세요 ] : ";
+			cin>>input;
+			mylist.add_node(input);
+		}
+
+		else if(sel ==2){
+
+			mylist.print();
+		}
+
+		else if(sel == 3){
+			int index=0;
+			cout<<"삭제할 인덱스 입력 : ";
+			cin>>index;
+			mylist.del_node(mylist.search(index));
+
+		}
+
+	}
+}

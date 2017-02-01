@@ -1,0 +1,113 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+/////////////////////////////////////////클래스 리스트 정의
+class list{
+private:
+	typedef struct node{
+		char data;
+		node *next;
+
+	}* nodeptr;
+
+
+	nodeptr temp;
+	nodeptr curr;
+	nodeptr head;
+public:
+	list();
+	void search(int input);
+	void append(char appdata);
+	void print();
+};
+
+int check= 0;//append node 갯수
+/////////////////////////////////////////리스트 초기화
+list::list(){
+	temp = NULL;
+	curr = NULL;
+	head  = NULL;
+}
+
+/////////////////////////////////////////리스트 추가
+void list::append(char appdata){
+
+check++;
+curr = head;
+temp=  head;
+
+nodeptr n = new node;
+n->data = appdata;
+n->next = NULL;
+
+if(head != NULL){
+	while(curr->next != NULL)
+	{
+		curr = curr->next;
+	}
+	curr->next = n;
+}
+else if(head== NULL){
+	head = n;
+}
+
+}
+/////////////////////////////////////////리스트 검색
+void list::search(int input){
+	curr= head;
+	
+	for(int i=0; i<check-input; i++){
+		curr= curr->next;
+	}
+	cout<<"뒤에서"<<input<<" 번째 원소는 : "<<curr->data<<endl; 
+}
+
+/////////////////////////////////////////리스트 출력
+void list::print(){
+	curr = head;
+	temp = head;
+	cout<<"---------------------------"<<endl;
+	while( curr != NULL){
+		cout<<curr->data<<" ";
+		curr= curr->next;
+
+	}
+	cout<<endl<<"---------------------------"<<endl;
+
+}
+/////////////////////////////////////////리스트 메인
+void main(){
+	list list;
+	while(1){
+	cout<<"*********************************"<<endl;
+	cout<<" 1. 추가 2. 출력 3. 검색 "<<endl;
+	cout<<"*********************************"<<endl;
+	int sel = 0;
+	char input;
+	cout<<" [ 선택 ] : ";
+	cin>>sel;
+	if( sel == 1 ){
+		
+		cout<<" [ 추가할것 입력 ] : ";
+		
+		cin>>input;
+	
+		list.append(input);
+
+	}
+
+	else if (sel == 2){
+		list.print();
+	}
+
+	else if (sel ==3){
+		cout<<" 검색할 데이터가 뒤에서 몇번째인지 입력 : " ;
+		int input=0;
+		cin>>input;
+		list.search(input);
+	}
+
+}
+}

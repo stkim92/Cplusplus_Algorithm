@@ -1,0 +1,121 @@
+#include<iostream>
+
+using namespace std;
+
+class list{
+private:
+
+	typedef struct node{
+		int data;
+		node *next;
+		node *prev;
+	}* nodeptr;
+
+	nodeptr curr;
+	nodeptr head;
+	nodeptr tail;
+public:
+	list();
+	void add_node(int add_data);
+	void print();
+	void arry();
+	node* search(int index);
+};
+
+list::list(){
+	curr = NULL;
+	head = NULL;
+	tail = NULL;
+}
+int count = 0;
+void list::add_node(int add_data){
+	node* new_node = new node;
+	new_node->data = add_data;
+
+	if( head == NULL){
+		new_node->next = new_node;
+		new_node->prev = new_node;
+		head = new_node;
+		tail = head;
+	}
+	else {
+		new_node->next = tail->next;
+		new_node->prev = tail;
+
+		tail->next = new_node;
+		head->prev = new_node;
+
+		tail=new_node;
+	}
+	count ++;
+}
+
+void list::arry(){
+	int temp=0;
+	int inc =2;
+
+	curr = head;
+
+	for(int j=0; j< count-1; j++){
+
+		for(int i=inc; i< count+1; i++){
+			if( curr->data > search(i)->data){
+				temp= curr->data;
+				curr->data = search(i)->data;
+				search(i)->data = temp;
+				//cout<<"curr : "<<curr->data<<endl;
+			}
+
+		}
+		inc++;
+		curr = curr->next;
+
+	}
+}
+
+
+list::node* list::search(int index){
+	node* searchptr;
+	searchptr = head;
+	for(int i=0; i< index-1; i++){
+		searchptr = searchptr->next;
+	}
+	return searchptr;
+}
+
+void list::print(){
+	node* temp2;
+	temp2= head;
+	for(int i=0; i<count; i++){
+		cout<<temp2->data<<" ";
+		temp2 = temp2->next;
+	}
+	cout<<endl;
+}
+
+void main(){
+	list mylist;
+	int sel =0;
+	while(1){
+		cout<<"1. 입력 2. 출력 3.정렬  [ 선택 ] : " ;
+		cin>>sel;
+
+		if( sel == 1 ){
+			int input;
+			cout<< "[ 값을 입력하세요 ] : ";
+			cin>>input;
+			mylist.add_node(input);
+		}
+
+		else if(sel ==2){
+
+			mylist.print();
+		}
+
+		else if(sel ==3){
+			mylist.arry(); 
+		}
+
+
+	}
+}

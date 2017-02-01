@@ -1,0 +1,95 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+
+using namespace std;
+
+ofstream f;
+
+class user{
+private:
+	size_t x;
+	size_t y;
+	size_t time;
+
+public:
+	user(){
+		time = 0;
+		x=0;
+		y=0;
+	}
+
+	user(size_t _x, size_t _y,size_t _time){
+		time = _time;
+		x = _x;
+		y = _y;
+	}
+
+	void print();
+	void set_x(size_t _x);
+	void set_y(size_t _y);
+	void set_time(size_t _time);
+//size_t move_x(size_t _y);
+
+
+};
+
+
+
+void user::set_x(size_t _x)
+{
+	x = _x;
+	f<<_x<<", ";
+}
+
+void user::set_y(size_t _y)
+{
+	y = _y;
+	f<<_y<<endl;
+
+}
+
+void user::set_time(size_t _time)
+{
+	time= _time;
+	f<<_time<<endl;
+
+}
+
+void monster_num(size_t _mon_num){
+	f<<_mon_num<<endl;
+
+}
+
+
+
+//size_t kill_mon(int _kill_num){
+//	_kill_num--;
+//	return _kill_num;
+//}
+
+void main(){
+	user kst;
+	size_t x, y,time,mon_num;
+
+	f.open("user.txt");
+
+	cout<<" x좌표 입력 : "; cin>>x;
+	cout<<" y좌표 입력 : "; cin>>y;
+	cout<<" 시간 입력 : "; cin>>time;
+	cout<<" 몬스터 수 : "; cin>>mon_num;
+
+	if( x<10000 && y<10000){
+		kst.set_x(x);
+		kst.set_y(y);
+		kst.set_time(time);
+		monster_num(mon_num);
+
+	}
+
+	else{
+		cout<<" 좌표는 10000(만)이하로 입력해주세열 "<<endl;
+	}
+	
+	f.close();
+}

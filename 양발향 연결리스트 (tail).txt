@@ -1,0 +1,160 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class list{
+private:
+
+	typedef struct node{
+		int data;
+		node *next;
+		node *prev;
+
+	}*nodeptr ;
+
+	nodeptr head;
+	nodeptr curr;
+	nodeptr temp;
+	nodeptr tail;
+
+public:
+
+	list();
+	void print();
+	void add(int add_data);
+	void del(int del_data);
+	list::nodeptr create(int data);
+};
+
+//list::nodeptr list::create(int data)
+//{
+//	nodeptr NewNode = new nodeptr;
+//
+//	NewNode->data = data;
+//	NewNode->next = NULL;
+//	NewNode->prev = NULL;
+//
+//	return NewNode;
+//}
+
+list::list(){
+	head = NULL;
+	curr = NULL;
+	tail = NULL;
+
+}
+void list::add(int add_data){
+	nodeptr n = new node;
+	n->next=NULL;
+	n->prev = NULL;
+	n->data = add_data;
+	
+	tail = head;
+
+
+	if( head == NULL){
+		head = n;
+	}
+
+	else if( head!= NULL){
+		tail->next = n;
+		n->prev = tail;
+	}
+	
+	//if( head == NULL ){
+	//	head = n;
+	//}
+
+	//else if ( head != NULL){
+	//	
+	//	tail = n;
+	//	temp = tail ->prev;
+	//}
+	//
+
+
+
+}
+//void list::add(int add_data){
+//	nodeptr n = new node;
+//	//n->prev = NULL;
+//	n->data = add_data;
+//	n->next  = NULL;
+//	n->prev = NULL;
+//
+//	temp = head;
+//	tail = head;
+//
+//	if( head == NULL){
+//		head = n;
+//	}
+//
+//	else if( head !=NULL){
+//		while(tail->next != NULL){
+//			//temp = tail;
+//			tail = tail->next;
+//			//tail->prev = temp;
+//		}
+//
+//	//if(NULL != tail){
+//
+//		tail->next = n;
+//		n->prev = tail;
+//
+//	//}
+//		//temp = tail;
+//		//tail ->next = n;
+//		//tail->prev = temp;
+//		//tail = temp;
+//	}
+//
+//}
+
+void list::del(int del_data){
+
+}
+
+void list::print(){
+	tail = head;
+	if( head != NULL ){
+		while( tail != NULL){
+			cout<<"data : "<<tail->data <<"/";
+
+			if(tail->prev != NULL){
+
+				cout<<"prev : "<<tail->prev->data <<"/";
+
+			}
+
+			tail = tail->next;	
+		}
+
+	}
+
+}
+
+void main(){
+	int sel = 0;
+	int input=0;
+	list list;
+
+
+	while(1){
+		cout<<" 1. 추가 2. 출력"<<endl;
+		cout<<"선택 : " ;
+		cin>>sel;
+
+		if( sel == 1){
+
+			cout<<"입력 : ";
+			cin >>input;
+			list.add(input);
+		}
+
+		else if (sel == 2){
+			list.print();
+		}
+
+	}
+}

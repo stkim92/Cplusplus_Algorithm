@@ -1,0 +1,124 @@
+#include<iostream>
+#include<string>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+
+void main(){
+
+	srand(time(NULL));
+
+	int i,j; //for문
+	int m,n; //2차 배열
+	int index1[10];
+	int index2[10];
+	int x=0;
+				
+	int count =0;
+	cout<<" 행 입 력 : ";
+	cin>>m;
+	cout<<" 열 입 력 : ";
+	cin>>n;
+	cout<<endl;
+	int a[10],b[10];// 0값 저장
+
+	int random;
+	
+
+	/*for(int i=0; i<10; i++){
+
+		random =  rand()%5;
+
+		arr[i] = random;
+
+		cout << arr[i] << ' '<< endl;
+
+	}
+	
+	cout << endl;*/
+//////////////////////////////////////////동적 할당 및 랜덤 배열 생성
+	
+
+	
+	int **arr_2;
+	arr_2 = new int*[m];
+	for(i=0; i<m; i++){
+		arr_2[i] = new int[n]; //배열 동적할당
+	}
+
+	
+
+	for(i=0; i<m; i++){
+		for(j=0; j<n; j++){
+			random =  rand()%9;
+
+			arr_2[i][j] = random;	
+		}
+	}// 배열에 랜덤
+///////////////////////////////////////배열 출력
+
+
+	cout << " <  origin_arry  >"<<endl;
+
+	for(i=0; i<m; i++){
+		for(j=0; j<n; j++){
+			cout<<"  "<<arr_2[i][j]<<"  ";
+		}
+		cout<<endl;
+	}
+
+	cout<<endl;
+//////////////////////////////////////// 0위치 찾아 각 인덱스를 저장 하는 배열 생성후 저장
+
+	cout<<" < 0의 위치 >"<<endl;
+
+	for(i=0; i<m; i++){
+		for(j=0; j<n; j++){
+
+			if(arr_2[i][j] == 0){
+				
+				index1[x] = i;
+				index2[x] = j;
+				
+				cout<<" 0 의 위치는 : "<<"< "<<index1[x]<<", "<<index2[x]<<" >"<<endl;
+				x++;
+				//cout<<"0 찾음 행: "<<i<<" "<<"열 : "<<j<<" "<<endl	
+			}
+
+		}
+	}
+
+	cout<<endl;
+	/////////////////////////////////////////찾은 0 갯수만큼 for문// 각 인덱스에 맞게 0을 저장
+	for(i=0; i<x; i++){
+		for(j=0;j<n; j++){
+			arr_2[index1[i]][j] = 0;
+			//cout<<index1[i];
+			
+		}
+	}
+	/////////////////////////////////////////찾은 0 갯수만큼 for문// 각 인덱스에 맞게 0을 저장
+	for(i=0;i<m; i++){
+		for(j=0; j<x; j++){
+					
+			arr_2[i][index2[j]] = 0;
+		}
+	}
+	/////////////////////////////////////////바뀐 배열 출력
+
+	cout << " <  changed_arry  >"<<endl;
+
+	for(i=0; i<m; i++){
+		for(j=0; j<n;j++){
+			cout<<"  "<<arr_2[i][j]<<"  ";
+		}
+		cout<<endl;
+	}
+}
+
+////////////////////////////////////////////////// 원본 배열 출력	
+		
+
+
+		

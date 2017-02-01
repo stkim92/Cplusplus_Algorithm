@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+
+using namespace std;
+
+int main(){
+	string input;
+	int i,j = 0;
+	int cat = 0;
+
+	cout<< "line :";
+	getline(cin, input, '\n' );
+	i= input.find( "cat", 0);
+	/*cout<<i<<" ";
+	i++;
+	i=input.find ("cat",i);
+	cout<<i<<" ";*/
+	for(i= input.find( "cat", 0); i != string::npos; i=input.find ("cat",i))
+	{
+
+		cat++;
+		i++;
+	}
+	cout<<"cat number "<<cat<<"in thr string" << '"'<<input<<'"';
+}

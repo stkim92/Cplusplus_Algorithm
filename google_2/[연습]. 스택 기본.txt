@@ -1,0 +1,138 @@
+*********************************************************************************
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class stack{
+private:
+
+	struct item{
+		string name;
+		int value;
+		item* prev;
+	};
+
+	item* stackptr;
+public:
+
+	void push(string name, int value);
+	void pop();
+	void readitem(item* r);
+	void print();
+
+	stack();
+	~stack();
+};
+
+stack::stack(){
+	stackptr = NULL;
+}
+stack::~stack(){
+	item* p1;
+	item* p2;
+
+	p1 = stackptr;
+	while(p1 != NULL){
+		p2 = p1;
+		p1 = p1->prev;
+		p2->prev = NULL;
+		delete p2;
+	}
+}
+
+void stack::push(string name, int value){
+	item* n = new item;
+
+	n->name = name;
+	n->value = value;
+
+	if(stackptr ==NULL){
+		stackptr = n;
+		stackptr->prev = NULL;
+	}
+	else{
+		n->prev = stackptr;
+		stackptr = n;
+	}
+}
+
+void stack::readitem(item* r){
+	cout<<"*********************\n";
+	cout<<"name  :  "<<r->name<<endl;
+	cout<<"value :  "<<r->value<<endl;
+	cout<<"*********************\n";
+}
+
+void stack::pop(){
+
+	if(stackptr == NULL){
+		cout<<" 지울게 없어여 "<<endl;
+	}
+	else{
+		item* p = stackptr;
+		readitem(p);
+		stackptr = stackptr->prev;
+		p->prev = NULL;
+		delete p;
+	}
+	cout<<endl<<endl;
+
+}
+
+void stack::print(){
+	cout<< " [ IN STACK ] "<<endl;
+	item* p = stackptr;
+	while(p != NULL)
+	{
+		readitem(p);
+		p= p->prev;
+	}
+	cout<<endl<<endl;
+}
+
+void main(){
+	stack sung;
+	
+	sung.push("sungtae", 2);
+	sung.push("sung", 3);
+	sung.push("tae", 4);
+	sung.push("sungtae", 1);
+
+	sung.print();
+
+	cout<<" 지울것은 \n";
+	sung.pop();
+
+	sung.print();
+}
+
+
+
+
+*********************************************************************************
+#include<iostream>
+#include<stack>
+using namespace std;
+
+int main(){
+
+	stack<int> myStack;
+
+	for(int i=0; i<10; i++){
+		cout<<"stack in " <<i<<endl;
+		myStack.push(i);
+	}
+
+	cout<<"size of myStack : "<<myStack.size()<<endl;
+	cout<<"the top of myStack : "<<myStack.top()<<endl;
+
+	while(!myStack.empty())
+	{
+		
+		cout<<" stack out " <<myStack.top()<<endl;
+		myStack.pop();
+		
+	}
+}
+*********************************************************************************

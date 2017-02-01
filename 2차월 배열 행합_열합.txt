@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+void main(){
+	int grad[4][2]={1,2,3,4,5,6,7,8};
+	int i,j=0;
+
+	int sum[4]={0,}; 
+	int sub[2]={0,};
+	for(i=0; i<4; i++){
+		for(j=0; j<2; j++){
+			sum[i] = sum[i]+ grad[i][j];
+			sub[j] = sub[j]+ grad[i][j];
+		}
+
+	}
+
+	for(i=0; i<4; i++){
+		for(j=0; j<2; j++){
+			cout<<grad[i][j]<<" ";
+		}
+
+		cout<<endl;
+	}
+	for(i=0; i<4; i++)
+		cout<<"sum : "<<sum[i]<<endl;
+
+	for(j=0; j<2; j++)
+		cout<<"sub : "<<sub[j]<<endl;
+
+
+}

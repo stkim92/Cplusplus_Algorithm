@@ -1,0 +1,232 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int node_num=0;
+///////////////////////////////클래스 선언
+class list{
+private:
+
+	typedef struct node{
+		char data;
+		node *next;
+
+	}* nodeptr;
+
+	nodeptr curr;
+	nodeptr temp;
+	nodeptr head;
+	
+
+public:
+
+	list();
+	void append(char appdata);
+	void del( char deldata);
+	void print();
+	void duple();
+	list::nodeptr search();
+
+
+};
+///////////////////////////////리스트 초기화
+list::list(){
+	curr = NULL;
+	temp = NULL;
+	head = NULL;
+	
+}
+///////////////////////////////추가 함수
+void list:: append( char appdata){
+	node_num++;//
+
+	nodeptr n = new node;
+	n->next = NULL;
+
+	n->data = appdata;
+
+	if( head != NULL){
+		curr = head;
+		while(curr-> next != NULL){
+			curr = curr ->next;
+		}
+		curr->next= n;
+	}
+
+	else{
+		head=  n;
+	}
+	
+}
+///////////////////////////////삭제 함수
+void list :: del( char deldata ){
+	nodeptr delptr=NULL;
+	curr = head;
+	temp = head;
+
+	
+	while((curr != NULL) && (curr->data != deldata)){
+		temp = curr;
+		curr= curr->next;
+
+	}
+	
+	if(curr == NULL){
+		cout<<"지울게 없어염"<<endl;
+		delete delptr;
+	}
+
+	else{
+		delptr = curr;
+		/*curr= curr->next;
+		temp->next = curr;*/
+		temp->next = curr->next;
+		if(delptr == head){
+			head = head->next;
+			temp = NULL;
+		}
+		delete delptr;
+	}
+
+
+}
+///////////////////////////////출력함수
+void list:: print(){
+	curr = head;
+	while(curr != NULL){
+		cout<< curr->data <<" ";
+		curr = curr->next;
+	}
+	cout<<endl;
+
+}
+///////////////////////////////중복 제거 함수 v001
+//void list::duple(){
+//	nodeptr dup;
+//	dup = head;
+//	temp = head;
+//	//curr=head->next;
+//	curr = head;
+//	curr = curr->next;
+//	while(temp != NULL){
+//		while( curr!= NULL && (temp ->data != curr->data) ) {
+//			//curr=head->next;
+//			curr=curr->next;
+//			dup = dup->next;
+//		}
+//		if(curr == NULL){
+//			cout<<"curr -> NULL 이래"<<endl;
+//		}
+//		else if(temp ->data ==curr->data){
+//			dup->next = curr-> next;
+//		}
+//	
+//		temp = temp->next;
+//	}
+//}
+///////////////////////////////중복 제거 함수 v002
+	
+void list::duple(){
+	nodeptr dup;
+	//dup = head;
+	curr = head;
+	
+	
+	//dup = dup->next;
+	while( curr->next != NULL){
+		dup = curr;
+		temp = dup;
+		dup  = dup->next;
+		
+		while(dup->next != NULL && curr->data != dup->data){
+			dup= dup->next;
+			temp = temp->next;
+		}
+		if(curr->data == dup->data){
+			temp ->next = dup->next;
+		}	
+		else if (dup == NULL){
+			cout<< "dup == NULL이에영"<<endl;
+		}
+		curr= curr->next;
+	}
+}
+
+
+
+
+
+//////////////////////////////서치 함수
+list::nodeptr list::search (){
+	nodeptr searchptr;
+	curr = head;
+	searchptr = head;
+
+
+	curr = curr->next;
+	while( curr != NULL){
+		while(searchptr != NULL && curr->data != searchptr->data){
+
+			searchptr = searchptr->next;
+		}
+
+		if(curr->data == searchptr->data){
+			return searchptr;
+		}	
+
+		curr= curr->next;
+		
+	}
+
+
+}
+	
+	
+	
+	
+
+
+///////////////////////////////메인 함수
+int main(){
+	list sung;
+	int sel=0;
+	char data_2='0';
+	while(1){
+
+		
+		
+		
+		cout<<"*************************************"<<endl;
+		cout<<"1. 추가  2. 삭제  3.출력 4. 중복 검사"<<endl;
+		cout<<"*************************************"<<endl;
+		cout<<"선택 : ";
+		cin>>sel;
+		cout<<"-------------------------------------"<<endl;
+		if(sel == 1){
+			cout<<"추가할 값 : ";
+			cin>>data_2;
+			
+			sung.append(data_2);
+			
+		}
+		else if(sel ==2){
+			cout<<"지울 값 : ";
+			cin>>data_2;
+			sung.del(data_2);
+		}
+		else if(sel ==3){
+			sung.print();
+		}
+		
+		else if(sel ==4){
+			sung.duple();
+		}
+
+
+
+	}
+
+	
+}
+

@@ -1,0 +1,48 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+int check( int a, int num, char* input_arry )
+{
+	int i,j=0;
+
+	input_arry[i];
+	for(i=0; i<num-1; i++){
+		for (j=i+1; j<num; j++)
+			if( input_arry[i] == input_arry[j]){
+				cout<<"같은 문자 발견 !"<<endl;
+				cout<<"인덱스는 : "<<i+1<<"와"<<j+1<<"번째  // "<< "문자는 : "<< input_arry[i]<< endl;
+			    return a;
+				//break;
+			}
+	}
+
+}
+
+void main(){
+
+
+	string input;
+	
+	int num,a=0;
+	char* input_arry;
+
+	cout<<"문자열 입력 : ";
+	cin>>input;
+	input_arry = (char*)input.c_str();
+	
+
+	num=strlen(input_arry);
+	
+
+
+	check(a, num, input_arry);
+		
+	if(a != 0 )
+		cout<<"< 중복 없음 >"<< endl;			
+	
+				
+}
+
